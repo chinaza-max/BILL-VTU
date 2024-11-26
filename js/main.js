@@ -260,6 +260,137 @@ else if (basePath === "/airtime") {
     });
 
 }   
+else if (basePath === "/data") {
+    
+
+    const $networkCards = $('.network-card');
+    const $phoneInput = $('#phoneNumberInput');
+    const $amountInput = $('#amountInput');
+    const $popularAmountBtns = $('.amount-btn');
+    const $payButton = $('#payButton');
+    const $contactFileUpload = $('#contactFileUpload');
+
+    let selectedNetwork = null;
+    let selectedAmount = null;
+
+    // Network Selection
+    $networkCards.on('click', function () {
+        $networkCards.removeClass('selected');
+        $(this).addClass('selected');
+        selectedNetwork = $(this).data('network');
+        validateForm();
+    });
+
+    // Phone Number Input
+    $phoneInput.on('input', function () {
+        const sanitizedValue = $(this).val().replace(/\D/g, '');
+        $(this).val(sanitizedValue);
+        validateForm();
+    });
+
+    // Popular Amount Buttons
+    $popularAmountBtns.on('click', function () {
+        $popularAmountBtns.removeClass('selected');
+        $(this).addClass('selected');
+        selectedAmount = $(this).data('amount');
+        $amountInput.val(selectedAmount);
+        validateForm();
+    });
+
+    // Amount Input
+    $amountInput.on('input', function () {
+        $popularAmountBtns.removeClass('selected');
+        selectedAmount = $(this).val();
+        validateForm();
+    });
+
+    // File Upload
+    $contactFileUpload.on('change', function () {
+        const file = this.files[0];
+        if (file) {
+            alert(`File uploaded: ${file.name}`);
+        }
+    });
+
+    // Form Validation
+    function validateForm() {
+        const isValid = selectedNetwork &&
+            $phoneInput.val().length >= 10 &&
+            selectedAmount &&
+            parseInt(selectedAmount) > 0;
+
+        if (isValid) {
+            $payButton.prop('disabled', false)
+                .removeClass('btn-secondary')
+                .addClass('btn-success');
+        } else {
+            $payButton.prop('disabled', true)
+                .removeClass('btn-success')
+                .addClass('btn-secondary');
+        }
+    }
+
+    // Pay Button
+    $payButton.on('click', function () {
+        if (!$(this).prop('disabled')) {
+            alert(`Purchasing ₦${selectedAmount} airtime for ${$phoneInput.val()} on ${selectedNetwork}`);
+        }
+    });
 
 
-  });
+
+    const dataPlanTemplate = [
+      {
+          days: 30,
+          data: 500,
+          price: 1500
+      },
+      {
+          days: 30,
+          data: 1024,
+          price: 2500
+      },
+      {
+          days: 30,
+          data: 2048,
+          price: 3500
+      },
+      {
+          days: 30,
+          data: 1024,
+          price: 2500
+      },
+      {
+          days: 30,
+          data: 2048,
+          price: 3500
+      }
+  ];
+
+  function createPlanCard(plan) {
+      const card = document.createElement('div');
+      card.classList.add('plan-card');
+      card.innerHTML = `
+          <div class="plan-details">
+              <div>${plan.days} days</div>
+              <div>${plan.data} MB</div>
+          </div>
+          <div class="plan-price">₦${plan.price}</div>
+          <button class="select-button">Select Plan</button>
+      `;
+      return card;
+  }
+
+  function renderPlans() {
+      const container = document.getElementById('plansContainer');
+      dataPlanTemplate.forEach(plan => {
+          const planCard = createPlanCard(plan);
+          container.appendChild(planCard);
+      });
+  }
+
+   renderPlans();
+}
+
+
+});

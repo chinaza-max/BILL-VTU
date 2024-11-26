@@ -30851,31 +30851,16 @@ div.tagsinput span.tag a {
 
 #datasection .card {
   padding:20px 20px 60px 20px;
+}
+
+#datasection .card {
+  padding:20px 20px 60px 20px;
 
 }
 
 #datasection .network-header {
   text-align: center;
   margin-bottom: 25px;
-}
-
-#datasection .network-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  margin-bottom: 25px;
-}
-
-#datasection .network-cards .network-card img{
-  width:37px;
-  height:37px;
-}
-
-#datasection .network-card img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  margin-bottom: 10px;
 }
 
 #datasection .network-cards {
@@ -30899,19 +30884,160 @@ div.tagsinput span.tag a {
   transition: all 0.3s ease;
 }
 
+#datasection .network-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
 #datasection .network-card.selected {
   border-color:rgba(var(--primary));
   background-color: rgba(var(--primary), 0.2);
 }
 
+#datasection .contact-section {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+
+
+#datasection .amount-btn {
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+#datasection .amount-btn.selected {
+  background-color:rgba(var(--primary));
+  color: white;
+  border-color: #007bff;
+}
+
+#datasection #payButton.btn-secondary{
+  width: 100%;
+  padding: 15px;
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+#datasection #payButton.btn-success {
+  background-color: rgba(var(--primary));
+  cursor: pointer;  
+}
+
+#datasection #accountSection  >div:nth-child(2){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#datasection .plans-container { 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+#datasection .plan-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  width: calc(33.333% - 15px);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 15px;
+}
+
+#datasection .plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+#datasection .plan-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1rem;
+}
+
+#datasection .plan-details div:nth-child(1) {
+  color: rgba(var(--primary));
+}
+
+#datasection .plan-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgba(var(--primary));
+  margin-bottom: 10px;
+}
+
+#datasection .select-button {
+  background-color: rgba(var(--primary));
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+#datasection .select-button:hover {
+  background-color: rgba(var(--primary));
+}
+
+@media screen and (max-width: 1024px) {
+  #datasection .plan-card {
+      width: calc(50% - 15px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #datasection .plan-card {
+      width: calc(33.333% - 10px);
+      padding: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #datasection .plan-card {
+      width: calc(50% - 10px);
+  }
+}
+
+@media screen and (max-width: 380px) {
+ /* #datasection .plan-card {
+      width: 100%;
+  }*/
+
+  
+  #datasection .select-button {
+    font-size: 12px;
+  }
+}
+
+
 
 @media (max-width: 576px) {
   #airtime .network-cards {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   #airtime .contact-section {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   #datasection .network-cards {
@@ -30919,6 +31045,6 @@ div.tagsinput span.tag a {
   }
 
   #datasection .contact-section {
-      flex-direction: column;
+    flex-direction: column;
   }
 }
